@@ -1,6 +1,7 @@
 package com.mario.products.controllers;
 
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,16 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
+    public ResponseEntity<Product> getProductById(@PathVariable Long id) throws InterruptedException {
+
+        if(id.equals(10L)){
+            throw new IllegalStateException("Producto no encontrado!");
+        }
+
+        if(id.equals(7L)){
+            TimeUnit.SECONDS.sleep(5L);
+        }
+
         Optional<Product> product = service.findById(id);
         if (product.isPresent()) {
             return ResponseEntity.ok(product.orElseThrow());
