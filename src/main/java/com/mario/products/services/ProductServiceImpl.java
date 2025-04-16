@@ -4,7 +4,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.mario.products.entities.Product;
+import com.mario.libs.msvc.commons.entities.Product;
 import com.mario.products.repositories.ProductRepository;
 
 import java.util.List;
